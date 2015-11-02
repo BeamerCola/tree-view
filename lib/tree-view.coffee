@@ -170,6 +170,8 @@ class TreeView extends View
         atom.workspace.addRightPanel(item: this)
       else
         atom.workspace.addLeftPanel(item: this)
+    $('body').addClass('tree-view-visible')
+    $('body').removeClass('tree-view-hidden')
 
   detach: ->
     @scrollLeftAfterAttach = @scroller.scrollLeft()
@@ -182,6 +184,8 @@ class TreeView extends View
     @panel.destroy()
     @panel = null
     @unfocus()
+    $('body').removeClass('tree-view-visible')
+    $('body').addClass('tree-view-hidden')
 
   focus: ->
     @list.focus()

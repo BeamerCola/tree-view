@@ -34,7 +34,11 @@ module.exports =
     @disposables = new CompositeDisposable
     @state.attached ?= true if @shouldAttach()
 
-    @createView() if @state.attached
+    if @state.attached
+      @createView()
+      document.getElementsByTagName('body')[0].className += ' tree-view-visible'
+    else
+      document.getElementsByTagName('body')[0].className += ' tree-view-hidden'
 
     @disposables.add atom.commands.add('atom-workspace', {
       'tree-view:show': => @createView().show()
